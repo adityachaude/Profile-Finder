@@ -1,0 +1,26 @@
+{
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^3.5.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwindcss": "^3.4.4"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.79.4"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "start": "npm-run-all --parallel nodesass-run tailwind-watch",
+    "startformat": "npm-run-all --parallel format nodesass-run tailwind-watch",
+    "build": "npm-run-all --sequential nodesass-build tailwind-build",
+    "deploy": "npm-run-all --sequential build firebasedeploy",
+    "firebasedeploy": "firebase deploy",
+    "tailwind-watch": "tailwindcss -i ./input.scss -o ./output.css --watch",
+    "tailwind-build": "tailwindcss -i ./input.scss -o ./output.css --minify",
+    "nodesass-run": "npx sass --watch ./input.scss ./input.css",
+    "nodesass-build": "npx sass ./input.scss ./input.css"
+  }
+}
